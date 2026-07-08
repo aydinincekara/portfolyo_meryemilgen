@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meryem İlgen | Dijital Tasarım & Robotik Portfolyosu</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Outfit) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0f0c16;
+            --bg-card: #1a1625;
+            --bg-subcard: #261f36;
+            --accent-primary: #d946ef;
+            --accent-secondary: #f43f5e;
+            --accent-tertiary: #8b5cf6;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border-color: #2e2640;
+            --gradient-primary: linear-gradient(135deg, #d946ef 0%, #f43f5e 50%, #f97316 100%);
+            --gradient-secondary: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+
+        /* Arka Plan Dekoratif Işıklar */
+        .bg-glow-1 {
+            position: fixed; top: -100px; left: -100px; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(217, 70, 239, 0.15) 0%, rgba(15, 12, 22, 0) 70%);
+            border-radius: 50%; z-index: -1; pointer-events: none;
+        }
+        .bg-glow-2 {
+            position: fixed; bottom: -150px; right: -100px; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(15, 12, 22, 0) 70%);
+            border-radius: 50%; z-index: -1; pointer-events: none;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Navigasyon Paneli */
+        nav {
+            background-color: rgba(26, 22, 37, 0.7); backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); padding: 15px 0;
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { font-weight: 800; font-size: 1.3rem; letter-spacing: 1px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
+
+        /* Hero Bölümü */
+        header { text-align: center; padding: 100px 20px 60px 20px; position: relative; }
+        .profile-title { font-size: 4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 15px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+        .profile-subtitle { font-size: 1.4rem; color: var(--text-muted); font-weight: 400; max-width: 600px; margin: 0 auto 30px auto; }
+
+        .badge-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .badge { background-color: rgba(217, 70, 239, 0.1); color: #fbcfe8; border: 1px solid rgba(217, 70, 239, 0.3); padding: 8px 20px; border-radius: 40px; font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
+        .badge:hover { background-color: rgba(217, 70, 239, 0.2); transform: translateY(-2px); border-color: rgba(217, 70, 239, 0.6); }
+
+        /* Kart Yapısı */
+        .section-card {
+            background-color: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 30px; padding: 40px; margin-bottom: 50px; position: relative; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .section-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient-secondary); }
+        
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; color: var(--text-main); }
+        .section-title i { color: var(--accent-primary); background: rgba(217, 70, 239, 0.1); padding: 12px; border-radius: 12px; font-size: 1.4rem; }
+        
+        .text-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; font-weight: 300; margin-bottom: 15px; }
+
+        /* Yetenekler Tablosu */
+        .skills-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; border-radius: 15px; overflow: hidden; border: 1px solid var(--border-color); }
+        .skills-table th, .skills-table td { padding: 18px 20px; text-align: left; }
+        .skills-table th { background-color: rgba(217, 70, 239, 0.15); color: var(--text-main); font-weight: 600; width: 30%; border-bottom: 1px solid var(--border-color); }
+        .skills-table td { background-color: rgba(38, 31, 54, 0.4); color: var(--text-muted); border-bottom: 1px solid var(--border-color); }
+        .skills-table tr:last-child th, .skills-table tr:last-child td { border-bottom: none; }
+        .skills-table td strong { color: var(--accent-primary); }
+
+        /* Galeri ve Resim Düzeni */
+        .gallery-wrapper { margin-top: 30px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .gallery-grid-featured { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .media-card { background-color: var(--bg-subcard); border-radius: 20px; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s ease; }
+        .media-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(217, 70, 239, 0.15); border-color: rgba(217, 70, 239, 0.4); }
+        
+        .image-container { width: 100%; height: 350px; background-color: #0b0910; position: relative; display: flex; justify-content: center; align-items: center; }
+        .image-container.gif-container { height: 400px; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 2; transition: transform 0.5s ease; }
+        .media-card:hover .image-container img { transform: scale(1.05); }
+        
+        .placeholder-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-muted); font-size: 0.9rem; text-align: center; padding: 20px; z-index: 1; background: linear-gradient(135deg, #1a1625 0%, #0f0c16 100%); }
+        .placeholder-box i { font-size: 2.5rem; margin-bottom: 15px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .media-overlay-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px 20px 20px 20px; background: linear-gradient(to top, rgba(15, 12, 22, 0.95), rgba(15, 12, 22, 0)); z-index: 3; }
+        .media-badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary); margin-bottom: 5px; display: block; }
+        .media-title { color: #fff; font-size: 0.9rem; font-weight: 500; }
+
+        /* Alt Alan ve İndirme Butonu */
+        footer { text-align: center; margin-top: 60px; padding: 60px 20px; border-top: 1px solid var(--border-color); position: relative; }
+        .contact-info { margin-bottom: 30px; font-size: 1.1rem; color: var(--text-main); }
+        .contact-info i { color: var(--accent-primary); margin-right: 8px; }
+        .contact-info a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+        .contact-info a:hover { color: var(--accent-secondary); }
+
+        .qr-download-link { text-decoration: none; display: inline-block; margin-top: 10px; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .qr-download-link:hover { transform: scale(1.05); }
+        .qr-zone { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); padding: 20px 25px; border-radius: 24px; box-shadow: 0 15px 35px rgba(217, 70, 239, 0.15); border: 2px solid transparent; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .qr-download-link:hover .qr-zone { border-color: var(--accent-primary); box-shadow: 0 20px 40px rgba(217, 70, 239, 0.25); }
+        .qr-zone p { color: #0f0c16; font-size: 0.85rem; font-weight: 800; margin-top: 12px; letter-spacing: 0.5px; }
+        .qr-info-text { color: var(--accent-primary); background: rgba(217, 70, 239, 0.1); padding: 6px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; margin-top: 8px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+
+        @media (max-width: 768px) {
+            .profile-title { font-size: 2.8rem; }
+            .section-card { padding: 25px; border-radius: 20px; }
+            .gallery-grid, .gallery-grid-featured { grid-template-columns: 1fr; }
+            .image-container { height: 280px; }
+            .skills-table th, .skills-table td { display: block; width: 100%; }
+            .skills-table th { background-color: rgba(217, 70, 239, 0.05); border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Meryem İlgen</div>
+            <div class="nav-links">
+                <a href="#hakkimda">Hakkımda</a>
+                <a href="#beceriler">Beceriler</a>
+                <a href="#projeler">Projeler</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1 class="profile-title">Meryem İlgen</h1>
+            <p class="profile-subtitle">3D Sanatçı & Robotik Prototip Geliştirici</p>
+            <div class="badge-container">
+                <span class="badge"><i class="fa-solid fa-shapes"></i> 3D Sanatçı</span>
+                <span class="badge"><i class="fa-solid fa-robot"></i> Robotik</span>
+                <span class="badge"><i class="fa-solid fa-vr-cardboard"></i> AR / XR Uygulamaları</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Hakkımda Özeti -->
+        <section id="hakkimda" class="section-card">
+            <h2 class="section-title"><i class="fa-solid fa-user-astronaut"></i> Hakkımda</h2>
+            <div class="text-content">
+                <p>Bilişim ve tasarım dünyasına sıfırdan başlayarak kısa sürede disiplinler arası bir yetkinlik kazandım. Bu yolculuğum, Fusion 360 eğitimi sırasında 3D tasarıma olan yatkınlığımın keşfedilmesiyle başladı. Donanım kısıtlamaları nedeniyle yöneldiğim Blender'da ise asıl yeteneğimin 3D modelleme olduğunu fark ederek bu alanda hızla uzmanlaştım.</p>
+                <p>Merakım ve öğrenme arzum, sadece dijital tasarımla sınırlı kalmadı. Tinkercad ve Fusion 360 ile katı modellemenin temellerini atıp, Arduino eğitimleriyle bu bilgileri fiziksel dünyaya taşıdım. Sürecin sonunda, Blender'da tasarladığım bir robotik kolun 3D baskısını alıp Arduino ile programlayarak sensörlerini aktif hale getirdim. Bu proje bana; tasarım, üretim, elektronik ve yazılım döngüsünü baştan sona yönetme deneyimi kazandırdı.</p>
+                <p>Güncel olarak, Python ve AR/VR teknolojilerini kullanarak etkileşimli artırılmış gerçeklik uygulamaları geliştiriyorum. Amacım; 3D modelleme, robotik ve XR teknolojilerindeki bilgi birikimimi birleştirerek yenilikçi ve işlevsel mühendislik çözümleri üretmek.</p>
+            </div>
+        </section>
+
+        <!-- Yetenekler / Teknik Beceriler -->
+        <section id="beceriler" class="section-card">
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Yetenekler / Teknik Beceriler</h2>
+            <table class="skills-table">
+                <tr>
+                    <th><i class="fa-solid fa-cube"></i> 3B Modelleme & Render</th>
+                    <td>Blender, Fusion 360, Tinkercad, 3B Prototipleme</td>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-microchip"></i> Robotik & Donanım</th>
+                    <td>Arduino Programlama, Devre Kurulumu, Sensörler, Servo Motor Kontrolü, 3B Baskı (STL hazırlama)</td>
+                </tr>
+                <tr>
+                    <th><i class="fa-brands fa-python"></i> Yazılım & XR</th>
+                    <td>Python, Artırılmış Gerçeklik (AR), Sanal Gerçeklik (VR) Temelleri</td>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-gears"></i> Mühendislik</th>
+                    <td>Katı Modelleme, Tersine Mühendislik, İşlevsel Prototip Geliştirme</td>
+                </tr>
+            </table>
+        </section>
+
+        <div id="projeler">
+            <!-- BÖLÜM A: BLENDER -->
+            <section class="section-card">
+                <h2 class="section-title"><i class="fa-solid fa-gem"></i> Bölüm A: 3D Modelleme ve Görselleştirme (Blender)</h2>
+                <div class="text-content">
+                    <p>Blender üzerinde geliştirdiğim organik, estetik ve görsel detay seviyesi yüksek 3D varlık (asset) tasarımlarım ve render çalışmalarım.</p>
+                </div>
+                
+                <div class="gallery-wrapper">
+                    <div class="gallery-grid-featured">
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-image"></i>media/resim7.png</div>
+                                <img src="media/resim7.png" alt="Blender Tasarım 1" onerror="this.style.display='none';">
+                                <div class="media-overlay-info"><span class="media-badge">BLENDER 3D</span></div>
+                            </div>
+                        </div>
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-image"></i>media/resim8.png</div>
+                                <img src="media/resim8.png" alt="Blender Tasarım 2" onerror="this.style.display='none';">
+                                <div class="media-overlay-info"><span class="media-badge">BLENDER 3D</span></div>
+                            </div>
+                        </div>
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-image"></i>media/resim9.png</div>
+                                <img src="media/resim9.png" alt="Blender Tasarım 3" onerror="this.style.display='none';">
+                                <div class="media-overlay-info"><span class="media-badge">BLENDER 3D</span></div>
+                            </div>
+                        </div>
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-image"></i>media/resim10.png</div>
+                                <img src="media/resim10.png" alt="Blender Tasarım 4" onerror="this.style.display='none';">
+                                <div class="media-overlay-info"><span class="media-badge">BLENDER 3D</span></div>
+                            </div>
+                        </div>
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-image"></i>media/resim11.png</div>
+                                <img src="media/resim11.png" alt="Blender Tasarım 5" onerror="this.style.display='none';">
+                                <div class="media-overlay-info"><span class="media-badge">BLENDER 3D</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BÖLÜM B: FUSION 360 -->
+            <section class="section-card">
+                <h2 class="section-title"><i class="fa-solid fa-pen-ruler"></i> Bölüm B: 3D Katı Modelleme (Fusion 360)</h2>
+                <div class="text-content">
+                    <p><strong style="color:var(--text-main);">Proje Kategorisi: Hassas Mühendislik ve Prototipleme</strong></p>
+                    <p>Fusion 360 ile katı modelleme ve montaj teknikleri üzerine çalışmalar yaptım. Bu projeler, sayısal üretim tekniklerine uygun, işlevsel parçaların tasarım sürecindeki yetkinliğimi gösterir.</p>
+                </div>
+                
+                <div class="gallery-wrapper">
+                    <div class="gallery-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-gear"></i>media/resim1.png</div>
+                                <img src="media/resim1.png" alt="Montaja Hazır Parametrik Mekanik Parça Tasarımı" onerror="this.style.display='none';">
+                                <div class="media-overlay-info">
+                                    <span class="media-badge">FUSION 360</span>
+                                    <div class="media-title">Montaja Hazır Parametrik Mekanik Parça Tasarımı</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-gears"></i>media/resim2.png</div>
+                                <img src="media/resim2.png" alt="3B Baskıya Uygun Teknik Çizim ve Montaj Dosyası" onerror="this.style.display='none';">
+                                <div class="media-overlay-info">
+                                    <span class="media-badge">FUSION 360</span>
+                                    <div class="media-title">3B Baskıya Uygun Teknik Çizim ve Montaj Dosyası</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BÖLÜM C: ROBOTİK KOL -->
+            <section class="section-card">
+                <h2 class="section-title"><i class="fa-solid fa-robot"></i> Bölüm C: Bitirme Projesi - Tasarımdan Programa Entegre Robotik Kol</h2>
+                <div class="text-content">
+                    <p>Bu proje, farklı disiplinlerdeki yeteneklerimin bir sentezidir. Robotik kolun gövde ve eklem mekaniğini Blender'da tasarlayıp 3B yazıcıdan bastıktan sonra, Arduino mikrodenetleyicisi ile servo motorlar ve sensörleri programlayarak kolun fiziksel olarak çalışmasını sağladım. Bu süreç; dijital tasarım, katmanlı üretim, devre kurulumu ve gömülü yazılım geliştirme adımlarının tümünü kapsamaktadır.</p>
+                </div>
+                
+                <div class="gallery-wrapper">
+                    <div class="gallery-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+                        <div class="media-card">
+                            <div class="image-container" style="height: 450px;">
+                                <div class="placeholder-box"><i class="fa-solid fa-microchip"></i>media/resim3.png</div>
+                                <img src="media/resim3.png" alt="Arduino Kontrollü, 3B Baskı Robotik Kol Prototipi" onerror="this.style.display='none';">
+                                <div class="media-overlay-info">
+                                    <span class="media-badge">BİTİRME PROJESİ</span>
+                                    <div class="media-title">Arduino Kontrollü, 3B Baskı Robotik Kol Prototipi</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BÖLÜM D: AR PROJESİ -->
+            <section class="section-card">
+                <h2 class="section-title"><i class="fa-solid fa-vr-cardboard"></i> Bölüm D: Artırılmış Gerçeklik (AR) Projesi</h2>
+                <div class="text-content">
+                    <p><strong style="color:var(--text-main);">Proje Kategorisi: Etkileşimli AR Uygulaması</strong></p>
+                    <p>Python programlama dili ve AR kütüphanelerini kullanarak, gerçek dünya ortamında 3D modellerin görüntülenmesini ve etkileşime girmesini sağlayan bir artırılmış gerçeklik uygulaması geliştirdim. Bu proje, yazılım becerilerimi ve üç boyutlu düşünme yeteneğimi birleştirerek sürükleyici kullanıcı deneyimleri oluşturma kabiliyetimi ortaya koymaktadır.</p>
+                </div>
+                
+                <div class="gallery-wrapper">
+                    <div class="gallery-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-camera"></i>media/resim4.png</div>
+                                <img src="media/resim4.png" alt="AR Deneyimi 1" onerror="this.style.display='none';">
+                                <div class="media-overlay-info">
+                                    <span class="media-badge">AR PROJESİ</span>
+                                    <div class="media-title">Python Tabanlı Marker-Bazlı AR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-card">
+                            <div class="image-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-mobile-screen"></i>media/resim5.png</div>
+                                <img src="media/resim5.png" alt="AR Deneyimi 2" onerror="this.style.display='none';">
+                                <div class="media-overlay-info">
+                                    <span class="media-badge">AR PROJESİ</span>
+                                    <div class="media-title">Gerçek Dünya Entegrasyonu</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-card" style="border-color: rgba(217, 70, 239, 0.4);">
+                            <div class="image-container gif-container">
+                                <div class="placeholder-box"><i class="fa-solid fa-film"></i>media/resim6.gif<br><small>(Animasyon)</small></div>
+                                <img src="media/resim6.gif" alt="AR Animasyon GIF" onerror="this.style.display='none';">
+                                <div class="media-overlay-info">
+                                    <span class="media-badge" style="color: #f43f5e;">ETKİLEŞİMLİ DENEYİM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Alt Bilgi ve İndirme Butonu -->
+    <footer>
+        <div class="contact-info">
+            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main);">Meryem İlgen</h3>
+            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:meryemilgenn@gmail.com">meryemilgenn@gmail.com</a></p>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">© 2026 Dijital Tasarım & Robotik Portfolyosu. Tüm Hakları Saklıdır.</p>
+        
+        <!-- Tıklanabilir İndirme Bağlantısı -->
+        <a href="media/portfolyo.pdf" download="Meryem_Ilgen_Portfolyo.pdf" class="qr-download-link" title="Portfolyoyu İndir">
+            <div class="qr-zone">
+                <i class="fa-solid fa-qrcode" style="font-size: 2.5rem; color: #0f0c16;"></i>
+                <p>PORTFOLYOYU İNDİR</p>
+                <div class="qr-info-text">
+                    <i class="fa-solid fa-download"></i> Tıklayarak İndirebilirsiniz
+                </div>
+            </div>
+        </a>
+    </footer>
+
+</body>
+</html>
